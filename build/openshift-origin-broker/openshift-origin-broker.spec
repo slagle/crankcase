@@ -51,7 +51,9 @@ echo "require File.expand_path('../plugin-config/uplift-bind-plugin.rb', __FILE_
 
 sed -i -e "s/^# Add plugin gems here/# Add plugin gems here\ngem 'gearchanger-mcollective-plugin'\n/" /var/www/stickshift/broker/Gemfile
 echo "require File.expand_path('../plugin-config/gearchanger-mcollective-plugin.rb', __FILE__)" >> /var/www/stickshift/broker/config/environments/development.rb
-echo "smallfiles=true" >> /etc/mongodb.conf
+if [ "x`fgrep smallfiles=true /etc/mongodb.conf`x" != "xsmallfiles=truex" ] ; then
+  echo "smallfiles=true" >> /etc/mongodb.conf
+fi
 
 pushd /var/www/stickshift/broker/ && bundle install && chown apache:apache Gemfile.lock && popd
 
