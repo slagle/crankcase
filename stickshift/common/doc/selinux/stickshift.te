@@ -358,6 +358,20 @@ require {
 	type var_lock_t;
 	class process transition;
         type tmpfs_t;
+	type ephemeral_port_t;
+	type unreserved_port_t;
+	type http_cache_port_t;
+	type mcollectived_t;
+	type node_t;
+	type initrc_var_run_t;
+	type initrc_t;
+	type var_lib_t;
+	class process { signal setrlimit };
+	class capability { sys_chroot sys_resource };
+	class tcp_socket { name_bind name_connect node_bind };
+	class file { read unlink open };
+	class sock_file { rename create unlink link };
+	class dir { write remove_name add_name };
 }
 
 #============= mcollectived_t ==============
@@ -456,6 +470,18 @@ allow mcollectived_t lib_t:file { write create unlink };
 allow mcollectived_t lib_t:dir create;
 allow mcollectived_t lib_t:file { rename setattr };
 allow mcollectived_t root_t:dir create;
+
+#haproxy
+allow mcollectived_t ephemeral_port_t:tcp_socket name_bind;
+allow mcollectived_t http_cache_port_t:tcp_socket name_connect;
+allow mcollectived_t initrc_t:process signal;
+allow mcollectived_t initrc_var_run_t:file { read unlink open };
+allow mcollectived_t node_t:tcp_socket node_bind;
+allow mcollectived_t self:capability { sys_chroot sys_resource };
+allow mcollectived_t self:process setrlimit;
+allow mcollectived_t unreserved_port_t:tcp_socket name_bind;
+allow mcollectived_t var_lib_t:dir { write remove_name add_name };
+allow mcollectived_t var_lib_t:sock_file { rename create unlink link };
 
 #============ dont audits ================
 
