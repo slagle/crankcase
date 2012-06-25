@@ -372,7 +372,24 @@ require {
 	class file { read unlink open };
 	class sock_file { rename create unlink link };
 	class dir { write remove_name add_name };
+	type httpd_log_t;
+	type httpd_var_run_t;
+	type mcollectived_t;
+	type http_port_t;
+	type mcollectived_tmp_t;
+	class process setpgid;
+	class capability net_bind_service;
+	class tcp_socket name_bind;
+	class file { write create open };
+	class sock_file { write create unlink setattr };
+	class sem { write read create unix_write setattr };
+	class lnk_file read;
+	class dir { write add_name };
+	type mcollectived_t;
+	class process getpgid;
+	class sem destroy;
 }
+
 
 #============= mcollectived_t ==============
 allow mcollectived_t stickshift_t:process transition;
@@ -482,6 +499,18 @@ allow mcollectived_t self:process setrlimit;
 allow mcollectived_t unreserved_port_t:tcp_socket name_bind;
 allow mcollectived_t var_lib_t:dir { write remove_name add_name };
 allow mcollectived_t var_lib_t:sock_file { rename create unlink link };
+allow mcollectived_t http_port_t:tcp_socket name_bind;
+allow mcollectived_t httpd_log_t:dir { write add_name };
+allow mcollectived_t httpd_log_t:file { create open };
+allow mcollectived_t httpd_log_t:lnk_file read;
+allow mcollectived_t httpd_var_run_t:dir { write add_name };
+allow mcollectived_t httpd_var_run_t:file { write create };
+allow mcollectived_t mcollectived_tmp_t:sock_file { write create unlink setattr };
+allow mcollectived_t self:capability net_bind_service;
+allow mcollectived_t self:process setpgid;
+allow mcollectived_t self:sem { write read create unix_write setattr };
+allow mcollectived_t self:process getpgid;
+allow mcollectived_t self:sem destroy;
 
 #============ dont audits ================
 
