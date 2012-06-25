@@ -93,9 +93,11 @@ File.open('/etc/stickshift/stickshift-node.conf','w') do |f|
   end
 end
 
+system "chkconfig stickshift-proxy on"
 system "hostname #{node_hostname}.#{node_domain}"
 system "/etc/cron.minutely/stickshift-facts"
 system "service crond restart"
 system "service mcollective restart"
+system "service stickshift-proxy restart"
 
 print "NOTE: Please ensure that the clocks between broker and node are in sync.\n"
