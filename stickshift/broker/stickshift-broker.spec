@@ -111,7 +111,6 @@ rm -rf $RPM_BUILD_ROOT
 
 #selinux updated
 systemctl --system daemon-reload
-chkconfig stickshift-broker on
 
 semanage -i - <<_EOF
 boolean -m --on httpd_can_network_connect
