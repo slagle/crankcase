@@ -28,6 +28,11 @@ CustomLog "|/usr/sbin/rotatelogs $PYCART_INSTANCE_DIR/logs/access_log$rotatelogs
   Options -MultiViews
 </Directory>
 
+WSGIProcessGroup $application
+WSGIApplicationGroup $application
+WSGIDaemonProcess $application user=$uuid group=$uuid processes=1 threads=5 display-name=%{GROUP} python-path="$OPENSHIFT_REPO_DIR/libs:$OPENSHIFT_REPO_DIR/wsgi:$PYCART_INSTANCE_DIR/virtenv/lib/python2.6/"
+WSGIImportScript "$OPENSHIFT_REPO_DIR/wsgi/application" process-group=$application application-group=$application
+
 WSGIScriptAlias / "$OPENSHIFT_REPO_DIR/wsgi/application"
 Alias /static "$OPENSHIFT_REPO_DIR/wsgi/static/"
 WSGIPythonPath "$OPENSHIFT_REPO_DIR/libs:$OPENSHIFT_REPO_DIR/wsgi:$PYCART_INSTANCE_DIR/virtenv/lib/python2.6/"
