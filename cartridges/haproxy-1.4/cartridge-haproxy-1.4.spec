@@ -3,7 +3,7 @@
 
 Summary:   Provides embedded haproxy-1.4 support
 Name:      cartridge-haproxy-1.4
-Version: 0.12.1
+Version: 0.12.5
 Release:   1%{?dist}
 Group:     Network/Daemons
 License:   ASL 2.0
@@ -98,6 +98,26 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Jul 05 2012 Adam Miller <admiller@redhat.com> 0.12.5-1
+- more cartridges have better metadata (rchopra@redhat.com)
+- Merge pull request #161 from VojtechVitek/php.ini-max_file_uploads
+  (mmcgrath+openshift@redhat.com)
+- cart metadata work merged; depends service added; cartridges enhanced; unit
+  tests updated (rchopra@redhat.com)
+- Add max_file_uploads INI setting to php.ini files (vvitek@redhat.com)
+
+* Tue Jul 03 2012 Adam Miller <admiller@redhat.com> 0.12.4-1
+- BugFix: 834151 (rpenta@redhat.com)
+
+* Mon Jul 02 2012 Adam Miller <admiller@redhat.com> 0.12.3-1
+- 
+
+* Mon Jul 02 2012 Adam Miller <admiller@redhat.com> 0.12.2-1
+- BZ 835205: Fail gracefully when the gear is in a half-built state instead of
+  trying to do the wrong thing. (rmillner@redhat.com)
+- BZ 835157: Add exception handling to add/remove-gear and print informative
+  messages. (rmillner@redhat.com)
+
 * Wed Jun 20 2012 Adam Miller <admiller@redhat.com> 0.12.1-1
 - bump_minor_versions for sprint 14 (admiller@redhat.com)
 

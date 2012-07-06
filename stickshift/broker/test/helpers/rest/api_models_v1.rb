@@ -7,6 +7,7 @@ class Param_V1 < BaseObj
     self.name = name
     self.type = type
     self.description = nil
+    valid_options = [valid_options] unless valid_options.kind_of?(Array)
     self.valid_options = valid_options || Array.new
   end
 
@@ -18,7 +19,7 @@ class Param_V1 < BaseObj
     end
     self.valid_options.each do |opt|
       raise_ex("Link Param option '#{opt}' NOT found") unless obj.valid_options.include?(opt)
-    end if self.valid_options
+    end if self.valid_options.to_s.length > 0
   end
 end
 
@@ -29,7 +30,8 @@ class OptionalParam_V1 < BaseObj
     self.name = name
     self.type = type
     self.description = nil
-    self.valid_options = valid_options
+    valid_options = [valid_options] unless valid_options.kind_of?(Array)
+    self.valid_options = valid_options || Array.new
     self.default_value = default_value
   end
 
@@ -42,7 +44,7 @@ class OptionalParam_V1 < BaseObj
     end
     self.valid_options.each do |opt|
       raise_ex("Link Param option '#{opt}' NOT found") unless obj.valid_options.include?(opt)
-    end if self.valid_options
+    end if self.valid_options.to_s.length > 0
   end
 end
 
@@ -171,7 +173,8 @@ class RestUser_V1 < BaseObj_V1
 end
 
 class RestCartridge_V1 < BaseObj_V1
-  attr_accessor :type, :name, :links, :properties
+  attr_accessor :type, :name, :version, :license, :license_url, :tags, :website,
+    :suggests, :help_topics, :links, :properties, :requires, :conflicts, :suggests, :depends
   
   def initialize(type=nil, name=nil)
     self.name = name

@@ -5,7 +5,7 @@
 
 Summary:        Cloud Development Controller
 Name:           rubygem-%{gemname}
-Version: 0.13.2
+Version: 0.13.5
 Release:        1%{?dist}
 Group:          Development/Languages
 License:        ASL 2.0
@@ -78,6 +78,40 @@ rm -rf %{buildroot}
 %{ruby_sitelib}/%{gemname}.rb
 
 %changelog
+* Thu Jul 05 2012 Adam Miller <admiller@redhat.com> 0.13.5-1
+- Merge pull request #182 from pravisankar/dev/ravi/bug/806273
+  (admiller@redhat.com)
+- changes identified after writing integration tests (abhgupta@redhat.com)
+- Fix for Bug 806273 (rpenta@redhat.com)
+- cart metadata work merged; depends service added; cartridges enhanced; unit
+  tests updated (rchopra@redhat.com)
+- Fix for bug#812802 (rpenta@redhat.com)
+
+* Tue Jul 03 2012 Adam Miller <admiller@redhat.com> 0.13.4-1
+- More fixes to bug# 808425 (rpenta@redhat.com)
+- MCollective updates - Added mcollective-qpid plugin - Added mcollective-
+  gearchanger plugin - Added mcollective agent and facter plugins - Added
+  option to support ignoring node profile - Added systemu dependency for
+  mcollective-client (kraman@gmail.com)
+- Fix for Bug# 808425 (rpenta@redhat.com)
+
+* Mon Jul 02 2012 Adam Miller <admiller@redhat.com> 0.13.3-1
+- Removed destroyed_gears during querying mongo (rpenta@redhat.com)
+- BugFix: 812800 (rpenta@redhat.com)
+- Merge remote-tracking branch 'upstream/master' (rpenta@redhat.com)
+- remove whitespaces (rchopra@redhat.com)
+- fix for gear delete/add from group instance (rchopra@redhat.com)
+- rejig gear saving flow. now save to mongo happens before create (with
+  required rollback on failure). also, destroy failures are not ignored (the
+  mongo entry will still exist). (rchopra@redhat.com)
+- Fix for bug# 796458 (rpenta@redhat.com)
+- BugFixes: 824973, 805983, 796458 (rpenta@redhat.com)
+- better error message (dmcphers@redhat.com)
+- Bug 834720 - Include the message at the rest level as well
+  (dmcphers@redhat.com)
+- Bug 834720 (dmcphers@redhat.com)
+- rearrange tests (dmcphers@redhat.com)
+
 * Thu Jun 21 2012 Adam Miller <admiller@redhat.com> 0.13.2-1
 - Enable ruby-1.9 cartridge is list of frameworks, bug fixes + cucumber tests.
   (ramr@redhat.com)

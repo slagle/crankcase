@@ -2,7 +2,7 @@
 %global frameworkdir %{_libexecdir}/stickshift/cartridges/mongodb-2.0
 
 Name: cartridge-mongodb-2.0
-Version: 0.22.2
+Version: 0.22.4
 Release: 1%{?dist}
 Summary: Embedded mongodb support for OpenShift
 
@@ -83,6 +83,14 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Jul 05 2012 Adam Miller <admiller@redhat.com> 0.22.4-1
+- cart metadata work merged; depends service added; cartridges enhanced; unit
+  tests updated (rchopra@redhat.com)
+
+* Mon Jul 02 2012 Adam Miller <admiller@redhat.com> 0.22.3-1
+- Bug fix - should print the correct database name for scalable apps.
+  (ramr@redhat.com)
+
 * Thu Jun 21 2012 Adam Miller <admiller@redhat.com> 0.22.2-1
 - Merge pull request #155 from rajatchopra/master (rmillner@redhat.com)
 - fix for bug#833340: support same district move (rchopra@redhat.com)
